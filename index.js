@@ -35,9 +35,14 @@ async function run() {
 
     const coffeeCollection = client.db("coffeeDB").collection("coffeeCollection");
 
+    app.get('/coffee', async(req, res) => {
+       const  cursor = coffeeCollection.find()
+       const coffee=  await cursor.toArray()
+         res.send(coffee);
+
+      })
 
 
-    
 app.post('/coffee', async (req, res) => {
     const coffee = req.body;
     console.log('hit the post api', coffee);
